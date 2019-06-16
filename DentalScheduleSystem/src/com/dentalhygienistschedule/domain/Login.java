@@ -1,18 +1,20 @@
 package com.dentalhygienistschedule.domain;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import com.dentalhygienistschedule.utils.DentalHygienists;
 
 public class Login implements DentalHygienists {
 
 	private String username;
 	private String password;
-	private String confirmPassword;
 	
 	// Constructor
-	public Login(String username, String password, String confirmPassword) {
+	public Login(String username, String password) {
 		this.username = username;
 		this.password = password;
-		this.confirmPassword = confirmPassword;
 	}
 
 	//Setters
@@ -21,9 +23,6 @@ public class Login implements DentalHygienists {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
 	}
 	
 	//Getters
@@ -35,18 +34,31 @@ public class Login implements DentalHygienists {
 		return password;
 	}
 	
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-	
 	//Methods
 	public boolean doPasswordsMatch() {
-		System.out.println("Checking if password match...");
+		//1. open the file using the username
+		//2. check the second line for the password
+		//3. compare it with the current password in our private attribute
 		
-		if(!password.contentEquals(confirmPassword)) {
-			return false;
+		File fileReader = new File(username + ".txt");
+		Scanner fileScan;
+		try {
+			fileScan = new Scanner(fileReader);
+			
+			//SKIPPING FIRST LINE IN OUR .TXT FILE
+			for(int x = 0; x < 1; x++) {
+				fileScan.nextLine();
+			}
+			// We are at the 2nd line, which has our password from when the user signed up.
+			if(fileScan.nextLine().contentEquals(password)) {
+				fileScan.close();
+				return true;
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
-		return true;
+		
+		return false;
 	}
 	
 	public void displayLoginOptions() {

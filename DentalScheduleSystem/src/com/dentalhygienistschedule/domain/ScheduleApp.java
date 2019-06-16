@@ -48,7 +48,7 @@ public class ScheduleApp {
 		while (!passwordMatch) {
 			String userName;
 			String password;
-			String confirmPassword;
+//			String confirmPassword;
 
 			System.out.println("Enter username: ");
 			userName = scan.nextLine();
@@ -56,10 +56,10 @@ public class ScheduleApp {
 			System.out.println("Enter password: ");
 			password = scan.nextLine();
 
-			System.out.println("Confirm password: ");
-			confirmPassword = scan.nextLine();
+//			System.out.println("Confirm password: ");
+//			confirmPassword = scan.nextLine();
 
-			userLogin = new Login(userName, password, confirmPassword);
+			userLogin = new Login(userName, password);
 
 			if (userLogin.doPasswordsMatch()) {
 				System.out.println("Welcome " + userLogin.getUsername());
