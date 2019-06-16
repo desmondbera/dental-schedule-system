@@ -67,10 +67,11 @@ public class Appointments {
 	public void checkAppointments(String userName) {
 		
 		Path path = Paths.get(userName +".txt");
-		if(Files.exists(path)) {
-			System.out.println("User has a file. Checking inside of file now...");
+		boolean userExists = userExists(path);
+		if(userExists) {
+			System.out.println("Found user!");
 		} else {
-			System.out.println("User cannot be found in our .txt file!");
+			System.out.println("You have to create an account before you can check your appoint");
 		}
  	}
 	
@@ -79,5 +80,12 @@ public class Appointments {
 		
 	}
 	
+	private static boolean userExists(Path filePath) {
+		if(Files.exists(filePath)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 }

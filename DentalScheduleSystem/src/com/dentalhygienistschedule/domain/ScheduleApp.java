@@ -113,6 +113,51 @@ public class ScheduleApp {
 
 	private static void initiateSignUp() {
 		System.out.println("Initiating sign up....");
+		boolean userNameTaken = true;
+		while(userNameTaken) {
+			String name;
+			String email;
+			String address;
+			String preferredHygienist;
+			String currentDentalOffice;
+			
+			System.out.println("Enter a new username: ");
+			name = scan.nextLine();
+			
+			userSignup = new SignUp(name);
+			if(!userSignup.doesUserNameExist(userSignup.getUserName())) {
+				userNameTaken = false;
+				
+				System.out.println("Enter your e-mail: ");
+				email = scan.nextLine();
+				
+				System.out.println("Enter your address: ");
+				address = scan.nextLine();
+				
+				System.out.println("Enter the name of your preferred hygienist: ");
+				preferredHygienist = scan.nextLine();
+				
+				System.out.println("Enter the name of your current dental office: ");
+				currentDentalOffice = scan.nextLine();
+				
+			} else {
+				System.out.println("Username already exists. Pick a new one.");
+			}
+			
+			
+//			userSignup = new SignUp(name, email, address, preferredHygienist, currentDentalOffice);
+			
+//			if(userSignup.doesUserNameExist()) {
+//				System.out.println("Username already exists");
+//			} else {
+//				System.out.println("Username does not exist.");
+//				userNameTaken = false;
+//				
+//				
+//			}
+		}
 	}
+	
+	
 
 }
