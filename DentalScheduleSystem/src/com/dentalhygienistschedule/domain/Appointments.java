@@ -92,7 +92,7 @@ public class Appointments {
 			} else {
 				System.out.println("No appointment scheduled.");
 			}
-			
+			fileScan.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
