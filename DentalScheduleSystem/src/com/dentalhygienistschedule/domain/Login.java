@@ -63,7 +63,6 @@ public class Login implements DentalHygienists {
 	public boolean doesUserExist() {
 		//1. loop thru the directory where all the files live
 		//2. if a .txt file with our username exists then our user also exists
-		System.out.println("Inside doesUserExist");
 		File dirPath = new File("/Users/desmond/git/DentalScheduleSystem/DentalScheduleSystem");
 		File[] files = dirPath.listFiles();
 		
@@ -76,10 +75,15 @@ public class Login implements DentalHygienists {
 	}
 	
 	public void displayLoginOptions() {
-		System.out.printf("Enter '1' to show your appointments\n" 
+		System.out.printf("\n"
+				+ "=============================\n"
+				+ "Enter '1' to show your appointments\n" 
 				+ "Enter '2' to show a list of hygienists\n" 
 				+ "Enter '3' to schedule an appointment\n" 
-				+ "Enter '4' to cancel an appointment\n");
+				+ "Enter '4' to cancel an appointment\n" 
+				+ "Enter '5' to exit program\n"
+				+ "=============================\n" 
+				+ "\n");
 	}
 	
 	

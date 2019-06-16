@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class ScheduleApp {
 
 	private static boolean booleanFlag = false;
+	private static boolean exitProgFlag = false;
 	private static Scanner scan = new Scanner(System.in);
 	private static Login userLogin;
 	private static SignUp userSignup;
@@ -62,31 +63,38 @@ public class ScheduleApp {
 				passwordMatch = true;
 				boolean isOptionValid = false;
 				while (!isOptionValid) {
-					userLogin.displayLoginOptions();
-					int loginOption = scan.nextInt();
-
-					switch (loginOption) {
-					case 1:
-						System.out.println("Showing appointments..");
-						Appointments appt = new Appointments();
-						appt.checkAppointments(userName);
-						isOptionValid = true;
-						break;
-					case 2:
-						System.out.println("Showing list of hygienists..");
-						isOptionValid = true;
-						break;
-					case 3:
-						System.out.println("When did you want to schedule appointment?");
-						isOptionValid = true;
-						break;
-					case 4:
-						System.out.println("Are you sure you want to cancel your appt?");
-						isOptionValid = true;
-						break;
-					default:
-						System.out.println("That's not a valid option. Try again.\n");
-						break;
+					
+					
+					while(!exitProgFlag) {
+						userLogin.displayLoginOptions();
+						int loginOption = scan.nextInt();
+						
+						switch (loginOption) {
+						case 1:
+							Appointments appt = new Appointments();
+							appt.checkAppointments(userName);
+							isOptionValid = true;
+							break;
+						case 2:
+							System.out.println("Showing list of hygienists..");
+							isOptionValid = true;
+							break;
+						case 3:
+							System.out.println("When did you want to schedule appointment?");
+							isOptionValid = true;
+							break;
+						case 4:
+							System.out.println("Are you sure you want to cancel your appt?");
+							isOptionValid = true;
+							break;
+						case 5:
+							System.out.println("Bye bye!");
+							exitProgFlag = true;
+							break;
+						default:
+							System.out.println("That's not a valid option. Try again.\n");
+							break;
+						}
 					}
 				}
 

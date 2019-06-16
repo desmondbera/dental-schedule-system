@@ -6,6 +6,14 @@ import java.util.Scanner;
 
 public class Appointments {
 	
+	public enum Days {
+		SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY
+	}
+	
+	public enum Months {
+		JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
+	}
+	
 	private String day;
 	private byte month;
 	private short year;
@@ -90,14 +98,6 @@ public class Appointments {
 		}
 		
 		
-		
-//		Path path = Paths.get(userName +".txt");
-//		boolean userExists = userExists(path);
-//		if(userExists) {
-//			System.out.println("Found user!");
-//		} else {
-//			System.out.println("You have to create an account before you can check your appoint");
-//		}
  	}
 	
 	//Add an appointment to .txt file
@@ -105,12 +105,5 @@ public class Appointments {
 		
 	}
 	
-//	private static boolean userExists(Path filePath) {
-//		if(Files.exists(filePath)) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//	}
 	
 }
