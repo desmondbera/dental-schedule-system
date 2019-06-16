@@ -42,22 +42,17 @@ public class ScheduleApp {
 	// 2.4 - Cancel an appointment
 	
 	private static void initiateLogIn() {
-		System.out.println("Initiating loggging in....");
 
 		boolean passwordMatch = false;
 		while (!passwordMatch) {
 			String userName;
 			String password;
-//			String confirmPassword;
 
 			System.out.println("Enter username: ");
 			userName = scan.nextLine();
 
 			System.out.println("Enter password: ");
 			password = scan.nextLine();
-
-//			System.out.println("Confirm password: ");
-//			confirmPassword = scan.nextLine();
 
 			userLogin = new Login(userName, password);
 
@@ -109,7 +104,6 @@ public class ScheduleApp {
 	// 3.4 - Preferred Hygienist Name
 	// 3.5 - Dental Office they frequent
 	private static void initiateSignUp() {
-		System.out.println("Initiating sign up....");
 		boolean userNameTaken = true;
 		boolean doPasswordsMatch = false;
 		while(userNameTaken || !doPasswordsMatch) {

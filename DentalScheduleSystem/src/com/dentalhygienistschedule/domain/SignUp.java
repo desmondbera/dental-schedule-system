@@ -116,8 +116,6 @@ public class SignUp {
 	}
 	
 	public boolean doPasswordsMatch() {
-		System.out.println("Checking if password match...");
-		
 		if(!password.contentEquals(passwordConfirm)) {
 			return false;
 		}
