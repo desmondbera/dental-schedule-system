@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 
 public class SignUp {
 	private String username;
+	private String password;
+	private String passwordConfirm;
 	private String email;
 	private String address;
 	private String preferredHygienist;
@@ -41,6 +43,12 @@ public class SignUp {
 	public void setCurrentDentalOffice(String currentDentalOffice) {
 		this.currentDentalOffice = currentDentalOffice;
 	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
 
 	//Getters
 	public String getUserName() {
@@ -58,7 +66,13 @@ public class SignUp {
 	public String getCurrentDentalOffice() {
 		return currentDentalOffice;
 	}
-
+	public String getPassword() {
+		return password;
+	}
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+	
 	//Methods
 	public boolean doesUserNameExist(String username) {
 		//1. check directory
@@ -81,9 +95,15 @@ public class SignUp {
 	public void createUserAcct() {
 		//1. We have all the information available in our private attributes
 		//2. Create a new file using the username
+		//3. Open the newly created file
+		//4. Write to the file our email, address, preferred hygienist, and current dental office on each line
+		//5. End it with a '-'
+		//6. We will append this file with current appointments AND past appointments
 		try {
 			PrintWriter writer = new PrintWriter(username + ".txt");
 			writer.write(username + "\n");
+			// **DO NOT STORE REAL PASSWORDS LIKE THIS**
+			writer.write(password + "\n");
 			writer.write(email + "\n");
 			writer.write(preferredHygienist + "\n");
 			writer.write(currentDentalOffice + "\n");
@@ -92,11 +112,16 @@ public class SignUp {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		System.out.println("You've successfully created an account with us!");
+	}
+	
+	public boolean doPasswordsMatch() {
+		System.out.println("Checking if password match...");
 		
-		//3. Open the newly created file
-		//4. Write to the file our email, address, preferred hygienist, and current dental office on each line
-		//5. End it with a '-'
-		//6. We will append this file with current appointments AND past appointments
+		if(!password.contentEquals(passwordConfirm)) {
+			return false;
+		}
+		return true;
 	}
 	
 }

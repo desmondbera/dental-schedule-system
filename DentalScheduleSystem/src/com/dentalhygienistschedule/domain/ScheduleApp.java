@@ -19,13 +19,11 @@ public class ScheduleApp {
 
 		while (!booleanFlag) {
 			String userInput = scan.nextLine();
-			System.out.println("You chose " + userInput);
 
 			if (userInput.equalsIgnoreCase("login")) {
 				booleanFlag = true;
 				// 1. Ask user for username, password, and confirm password
 				initiateLogIn();
-
 			} else if (userInput.equalsIgnoreCase("sign up")) {
 				booleanFlag = true;
 				// 1. Ask user to fill sign up form
@@ -34,22 +32,15 @@ public class ScheduleApp {
 				System.out.println("You need to type a valid input");
 			}
 		}
-
-		// 2. If the user is already signed up (in our DB) we will show the following
-		// options once they log in:
-		// 2.1 - Show appointments they made
-		// 2.2 - Show a list of hygienist's they can choose from OR search functionality
-		// 2.3 - Schedule an appointment
-		// 2.4 - Cancel an appointment
-
-		// 3. If the user is signing up we will show the following options:
-		// 3.1 - Enter name
-		// 3.2 - Enter email
-		// 3.3 - Enter Address
-		// 3.4 - Preferred Hygienist Name
-		// 3.5 - Dental Office they frequent
 	}
 
+	// 2. If the user is already signed up (in our DB) we will show the following
+	// options once they log in:
+	// 2.1 - Show appointments they made
+	// 2.2 - Show a list of hygienist's they can choose from OR search functionality
+	// 2.3 - Schedule an appointment
+	// 2.4 - Cancel an appointment
+	
 	private static void initiateLogIn() {
 		System.out.println("Initiating loggging in....");
 
@@ -111,12 +102,21 @@ public class ScheduleApp {
 
 	}
 
+	// 3. If the user is signing up we will show the following options:
+	// 3.1 - Enter name
+	// 3.2 - Enter email
+	// 3.3 - Enter Address
+	// 3.4 - Preferred Hygienist Name
+	// 3.5 - Dental Office they frequent
 	private static void initiateSignUp() {
 		System.out.println("Initiating sign up....");
 		boolean userNameTaken = true;
-		while(userNameTaken) {
+		boolean doPasswordsMatch = false;
+		while(userNameTaken || !doPasswordsMatch) {
 			String name;
 			String email;
+			String password;
+			String confirmPassword;
 			String address;
 			String preferredHygienist;
 			String currentDentalOffice;
@@ -128,39 +128,41 @@ public class ScheduleApp {
 			if(!userSignup.doesUserNameExist(userSignup.getUserName())) {
 				userNameTaken = false;
 				
-				System.out.println("Enter your e-mail: ");
-				email = scan.nextLine();
-				userSignup.setEmail(email);
+				System.out.println("Enter a password: ");
+				password = scan.nextLine();
+				userSignup.setPassword(password);
 				
-				System.out.println("Enter your address: ");
-				address = scan.nextLine();
-				userSignup.setAddress(address);
+				System.out.println("Confirm your password: ");
+				confirmPassword = scan.nextLine();
+				userSignup.setPasswordConfirm(confirmPassword);
 				
-				System.out.println("Enter the name of your preferred hygienist: ");
-				preferredHygienist = scan.nextLine();
-				userSignup.setPreferredHygienist(preferredHygienist);
-				
-				System.out.println("Enter the name of your current dental office: ");
-				currentDentalOffice = scan.nextLine();
-				userSignup.setCurrentDentalOffice(currentDentalOffice);
-				
-				userSignup.createUserAcct();
-				
+				if(userSignup.doPasswordsMatch()) {
+					doPasswordsMatch = true;
+					
+					System.out.println("Enter your e-mail: ");
+					email = scan.nextLine();
+					userSignup.setEmail(email);
+					
+					System.out.println("Enter your address: ");
+					address = scan.nextLine();
+					userSignup.setAddress(address);
+					
+					System.out.println("Enter the name of your preferred hygienist: ");
+					preferredHygienist = scan.nextLine();
+					userSignup.setPreferredHygienist(preferredHygienist);
+					
+					System.out.println("Enter the name of your current dental office: ");
+					currentDentalOffice = scan.nextLine();
+					userSignup.setCurrentDentalOffice(currentDentalOffice);
+					
+					userSignup.createUserAcct();
+				} else {
+					System.out.println("Passwords do not match. Try again.");
+				}
+
 			} else {
 				System.out.println("Username already exists. Pick a new one.");
 			}
-			
-			
-//			userSignup = new SignUp(name, email, address, preferredHygienist, currentDentalOffice);
-			
-//			if(userSignup.doesUserNameExist()) {
-//				System.out.println("Username already exists");
-//			} else {
-//				System.out.println("Username does not exist.");
-//				userNameTaken = false;
-//				
-//				
-//			}
 		}
 	}
 	
