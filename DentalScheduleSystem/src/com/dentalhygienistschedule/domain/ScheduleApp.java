@@ -82,6 +82,8 @@ public class ScheduleApp {
 					switch (loginOption) {
 					case 1:
 						System.out.println("Showing appointments..");
+						Appointments appt = new Appointments();
+						appt.checkAppointments(userName);
 						isOptionValid = true;
 						break;
 					case 2:

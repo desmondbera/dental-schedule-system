@@ -56,6 +56,6 @@ public class Login implements DentalHygienists {
 				+ "Enter '4' to cancel an appointment\n");
 	}
 	
-//	public 
+	
 	
 }
