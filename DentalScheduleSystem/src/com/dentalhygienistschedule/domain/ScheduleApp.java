@@ -26,7 +26,7 @@ public class ScheduleApp {
 				// 1. Ask user for username, password, and confirm password
 				initiateLogIn();
 
-			} else if (userInput.equalsIgnoreCase("signup")) {
+			} else if (userInput.equalsIgnoreCase("sign up")) {
 				booleanFlag = true;
 				// 1. Ask user to fill sign up form
 				initiateSignUp();
@@ -130,15 +130,21 @@ public class ScheduleApp {
 				
 				System.out.println("Enter your e-mail: ");
 				email = scan.nextLine();
+				userSignup.setEmail(email);
 				
 				System.out.println("Enter your address: ");
 				address = scan.nextLine();
+				userSignup.setAddress(address);
 				
 				System.out.println("Enter the name of your preferred hygienist: ");
 				preferredHygienist = scan.nextLine();
+				userSignup.setPreferredHygienist(preferredHygienist);
 				
 				System.out.println("Enter the name of your current dental office: ");
 				currentDentalOffice = scan.nextLine();
+				userSignup.setCurrentDentalOffice(currentDentalOffice);
+				
+				userSignup.createUserAcct();
 				
 			} else {
 				System.out.println("Username already exists. Pick a new one.");
