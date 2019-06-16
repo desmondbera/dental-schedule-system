@@ -1,8 +1,8 @@
 package com.dentalhygienistschedule.domain;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Appointments {
 	
@@ -66,13 +66,38 @@ public class Appointments {
 	//Check .txt file for appointments
 	public void checkAppointments(String userName) {
 		
-		Path path = Paths.get(userName +".txt");
-		boolean userExists = userExists(path);
-		if(userExists) {
-			System.out.println("Found user!");
-		} else {
-			System.out.println("You have to create an account before you can check your appoint");
+		//1. Open file using name
+		//2. Check if there are any appointments
+		//3. Appointments will be after '-'
+		
+		File fileReader = new File(userName + ".txt");
+		try {
+			Scanner fileScan = new Scanner(fileReader);
+			//Skip the users info.
+			for(int x = 0; x < 6; x++) {
+				fileScan.nextLine();
+			}
+			
+			//Check if there is another line, if so then we have some appointments
+			if(fileScan.hasNextLine()) {
+				System.out.println("Found an appointment");
+			} else {
+				System.out.println("No appointment scheduled.");
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
+		
+		
+		
+//		Path path = Paths.get(userName +".txt");
+//		boolean userExists = userExists(path);
+//		if(userExists) {
+//			System.out.println("Found user!");
+//		} else {
+//			System.out.println("You have to create an account before you can check your appoint");
+//		}
  	}
 	
 	//Add an appointment to .txt file
@@ -80,12 +105,12 @@ public class Appointments {
 		
 	}
 	
-	private static boolean userExists(Path filePath) {
-		if(Files.exists(filePath)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+//	private static boolean userExists(Path filePath) {
+//		if(Files.exists(filePath)) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+//	}
 	
 }

@@ -56,7 +56,7 @@ public class ScheduleApp {
 
 			userLogin = new Login(userName, password);
 
-			if (userLogin.doPasswordsMatch()) {
+			if (userLogin.doPasswordsMatch() && userLogin.doesUserExist()) {
 				System.out.println("Welcome " + userLogin.getUsername());
 
 				passwordMatch = true;
@@ -91,7 +91,7 @@ public class ScheduleApp {
 				}
 
 			} else {
-				System.out.println("Your passwords do not match.");
+				System.out.println("Your passwords do not match or your username is incorrect.");
 			}
 		}
 

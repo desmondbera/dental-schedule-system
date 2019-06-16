@@ -44,7 +44,6 @@ public class Login implements DentalHygienists {
 		Scanner fileScan;
 		try {
 			fileScan = new Scanner(fileReader);
-			
 			//SKIPPING FIRST LINE IN OUR .TXT FILE
 			for(int x = 0; x < 1; x++) {
 				fileScan.nextLine();
@@ -59,6 +58,21 @@ public class Login implements DentalHygienists {
 		}
 		
 		return false;
+	}
+	
+	public boolean doesUserExist() {
+		//1. loop thru the directory where all the files live
+		//2. if a .txt file with our username exists then our user also exists
+		System.out.println("Inside doesUserExist");
+		File dirPath = new File("/Users/desmond/git/DentalScheduleSystem/DentalScheduleSystem");
+		File[] files = dirPath.listFiles();
+		
+		for(File name : files) {
+			if(!name.isDirectory() && name.toString().endsWith(username + ".txt")) {
+				return true;
+			}
+		}
+		return false; 
 	}
 	
 	public void displayLoginOptions() {

@@ -100,7 +100,7 @@ public class SignUp {
 		//5. End it with a '-'
 		//6. We will append this file with current appointments AND past appointments
 		try {
-			PrintWriter writer = new PrintWriter(username + ".txt");
+			PrintWriter writer = new PrintWriter(username.toLowerCase() + ".txt");
 			writer.write(username + "\n");
 			// **DO NOT STORE REAL PASSWORDS LIKE THIS**
 			writer.write(password + "\n");
