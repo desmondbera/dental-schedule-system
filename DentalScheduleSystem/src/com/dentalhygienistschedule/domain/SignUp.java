@@ -1,8 +1,8 @@
 package com.dentalhygienistschedule.domain;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 public class SignUp {
 	private String username;
@@ -81,6 +81,18 @@ public class SignUp {
 	public void createUserAcct() {
 		//1. We have all the information available in our private attributes
 		//2. Create a new file using the username
+		try {
+			PrintWriter writer = new PrintWriter(username + ".txt");
+			writer.write(username + "\n");
+			writer.write(email + "\n");
+			writer.write(preferredHygienist + "\n");
+			writer.write(currentDentalOffice + "\n");
+			writer.write("-");
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
 		//3. Open the newly created file
 		//4. Write to the file our email, address, preferred hygienist, and current dental office on each line
 		//5. End it with a '-'
